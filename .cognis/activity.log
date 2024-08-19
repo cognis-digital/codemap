@@ -2,3 +2,4 @@
 2024-06-25T15:17:07  ci(output): simplify the walker
 2024-07-07T10:34:14  chore(scan): add a JSON schema for output
 2024-08-07T17:51:21  perf(rules): fix off-by-one in line numbers
+2024-08-19T12:08:28  ci(tests): support stdin as a source
