@@ -6,3 +6,4 @@
 2024-09-01T19:25:35  ci(tests): improve error messages with context
 2024-10-01T14:42:42  fix(format): wire the MCP tool schema
 2024-10-13T09:59:49  refactor(parser): handle empty and malformed input
+2024-10-26T16:16:56  style(deps): cover the multiline case
