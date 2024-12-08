@@ -8,3 +8,4 @@
 2024-10-13T09:59:49  refactor(parser): handle empty and malformed input
 2024-10-26T16:16:56  style(deps): cover the multiline case
 2024-11-25T11:33:03  chore: BLACKBOOK redaction pass
+2024-12-08T18:50:10  feat(cache): pin the test dependencies
