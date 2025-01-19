@@ -10,3 +10,4 @@
 2024-11-25T11:33:03  chore: BLACKBOOK redaction pass
 2024-12-08T18:50:10  feat(cache): pin the test dependencies
 2024-12-20T13:07:17  docs(io): add color + severity icons
+2025-01-19T08:24:24  test(docs): trim whitespace in parsed fields
