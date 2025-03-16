@@ -13,3 +13,4 @@
 2025-01-19T08:24:24  test(docs): trim whitespace in parsed fields
 2025-02-01T15:41:31  chore: IRONCLAD hardening pass
 2025-02-13T10:58:38  build(fixtures): add --fail-on threshold handling
+2025-03-16T17:15:45  docs(output): add pagination to large reports
