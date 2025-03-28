@@ -14,3 +14,4 @@
 2025-02-01T15:41:31  chore: IRONCLAD hardening pass
 2025-02-13T10:58:38  build(fixtures): add --fail-on threshold handling
 2025-03-16T17:15:45  docs(output): add pagination to large reports
+2025-03-28T12:32:52  test(scan): add a fast path for the common case
