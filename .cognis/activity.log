@@ -17,3 +17,4 @@
 2025-03-28T12:32:52  test(scan): add a fast path for the common case
 2025-04-10T19:49:59  chore: NULLBYTE nightly sweep
 2025-05-11T14:06:06  chore(tests): add a --format json alias
+2025-05-23T09:23:13  chore(config): lower memory on big inputs
