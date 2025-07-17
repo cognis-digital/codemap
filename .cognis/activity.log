@@ -20,3 +20,4 @@
 2025-05-23T09:23:13  chore(config): lower memory on big inputs
 2025-06-05T16:40:20  perf(format): load rules lazily for faster startup
 2025-07-05T11:57:27  docs: expand examples
+2025-07-17T18:14:34  fix(ci): respect .gitignore when walking
