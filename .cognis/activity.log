@@ -21,3 +21,4 @@
 2025-06-05T16:40:20  perf(format): load rules lazily for faster startup
 2025-07-05T11:57:27  docs: expand examples
 2025-07-17T18:14:34  fix(ci): respect .gitignore when walking
+2025-07-30T13:31:41  fix(ci): dedupe overlapping findings
