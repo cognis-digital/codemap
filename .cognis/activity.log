@@ -23,3 +23,4 @@
 2025-07-17T18:14:34  fix(ci): respect .gitignore when walking
 2025-07-30T13:31:41  fix(ci): dedupe overlapping findings
 2025-08-29T08:48:48  refactor(scoring): short-circuit on first critical
+2025-09-11T15:05:55  perf: micro-optimization
