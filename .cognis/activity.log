@@ -25,3 +25,4 @@
 2025-08-29T08:48:48  refactor(scoring): short-circuit on first critical
 2025-09-11T15:05:55  perf: micro-optimization
 2025-09-23T10:22:02  fix(docs): add usage examples to help
+2025-10-23T17:39:09  refactor(fixtures): improve the demo scenario
