@@ -1,0 +1,7 @@
+# Sample medical codes across four systems (one per line)
+E11.9
+4548-4
+6809
+99213
+I10
+ZZZ999
