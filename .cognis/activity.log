@@ -30,3 +30,4 @@
 2025-11-17T19:13:23  test: add edge case
 2025-12-18T14:30:30  feat(scan): simplify the walker
 2025-12-30T09:47:37  docs(cli): add a JSON schema for output
+2026-01-11T16:04:44  test(config): fix off-by-one in line numbers
