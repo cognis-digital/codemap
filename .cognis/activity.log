@@ -34,3 +34,4 @@
 2026-02-11T11:21:51  test: it's not flaky, you're flaky
 2026-02-24T18:38:58  build(detect): improve error messages with context
 2026-03-09T13:55:05  chore(parser): wire the MCP tool schema
+2026-04-08T08:12:12  perf(ci): handle empty and malformed input
