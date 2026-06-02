@@ -37,3 +37,4 @@
 2026-04-08T08:12:12  perf(ci): handle empty and malformed input
 2026-04-20T15:29:19  chore: in case of fire — commit, push, leave building
 2026-05-03T10:46:26  ci(scoring): add a regression fixture
+2026-06-02T17:03:33  chore(engine): pin the test dependencies
