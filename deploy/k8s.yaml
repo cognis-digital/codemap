@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: codemap, labels: { app: codemap } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: codemap } }
+  template:
+    metadata: { labels: { app: codemap } }
+    spec:
+      containers:
+        - name: codemap
+          image: ghcr.io/cognis-digital/codemap:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: codemap }
+spec:
+  selector: { app: codemap }
+  ports: [{ port: 80, targetPort: 8000 }]
