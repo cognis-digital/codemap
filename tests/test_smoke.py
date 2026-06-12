@@ -6,7 +6,6 @@ import sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from codemap import core
 from codemap.core import CodeSystem, detect_system, load_default
 from codemap.cli import main
 

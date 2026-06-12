@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-codemap
+pip install "git+https://github.com/cognis-digital/codemap.git"
 codemap scan .            # → prioritized findings in seconds
 ```
 
@@ -52,7 +52,7 @@ Offline, scriptable terminology crosswalk — turns a painful UMLS-portal lookup
 ## Quick start
 
 ```bash
-pip install cognis-codemap
+pip install "git+https://github.com/cognis-digital/codemap.git"
 codemap --version
 codemap scan .                       # scan current project
 codemap scan . --format json         # machine-readable
