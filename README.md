@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/codemap.git"
 codemap scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+CODEMAP is a command-line tool that translates and validates medical billing and clinical codes entirely on your own computer — no account, no internet connection, no hospital portal required. You give it a code like E11.9 (ICD-10 for Type 2 diabetes) and it tells you whether it is valid, what it means, and what equivalent codes exist in other systems such as LOINC lab tests, RxNorm drug identifiers, or CPT procedure codes. It is aimed at clinical data engineers, health informaticists, and anyone building or auditing healthcare software who needs a fast, scriptable way to cross-reference coding standards without logging into UMLS or OHDSI Athena.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why codemap?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -49,6 +55,42 @@ Offline, scriptable terminology crosswalk — turns a painful UMLS-portal lookup
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`codemap` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/codemap/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/codemap/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/codemap.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/codemap.git"  # uv
+pip install "git+https://github.com/cognis-digital/codemap.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/codemap.git
+cd codemap && pip install .
+```
+
+Then run:
+```sh
+codemap --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
