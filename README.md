@@ -20,6 +20,46 @@ pip install cognis-codemap
 codemap scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. **Install:**
+
+   ```bash
+   pip install -e .
+   ```
+
+2. **Validate a code** (the coding system is auto-detected) with the `validate` subcommand:
+
+   ```bash
+   codemap validate E11.9
+   ```
+
+   Validate a batch from a file (one code per line) for CI-friendly output:
+
+   ```bash
+   codemap validate --input codes.txt --format json
+   ```
+
+3. **Crosswalk a code** to equivalent concepts in other terminologies (ICD-10 / LOINC / RxNorm / CPT). Use `--to` to limit the target system and `--table` to supply your own terminology CSV:
+
+   ```bash
+   codemap crosswalk E11.9 --to RXNORM --format json
+   ```
+
+4. **Read the result.** `validate` reports per-code `format` (valid/INVALID) and whether it is `known`, exiting **1 if any code is invalid/unknown**. `crosswalk` lists mapped concepts and exits **1 when there are zero matches**. `detect` identifies the coding system of raw codes:
+
+   ```bash
+   codemap detect 4548-4
+   ```
+
+5. **Use it in CI** — fail when a code set contains anything invalid:
+
+   ```bash
+   codemap validate --input codes.txt --format json || {
+     echo "Invalid/unknown medical codes present"; exit 1; }
+   ```
+
+
 ## Contents
 
 - [Why codemap?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
