@@ -148,17 +148,23 @@ def build_parser() -> argparse.ArgumentParser:
     v.add_argument("codes", nargs="*", help="one or more codes")
     v.add_argument("--input", help="file with one code per line")
     v.add_argument("--table", help="custom terminology CSV (defaults to built-in)")
+    v.add_argument("--format", choices=["table", "json"], default="table",
+                   help="output format (default: table)")
     v.set_defaults(func=_cmd_validate)
 
     c = sub.add_parser("crosswalk", help="map a code to equivalent concepts")
     c.add_argument("code", help="the source code")
     c.add_argument("--to", help="limit to a target system (ICD10/LOINC/RXNORM/CPT)")
     c.add_argument("--table", help="custom terminology CSV (defaults to built-in)")
+    c.add_argument("--format", choices=["table", "json"], default="table",
+                   help="output format (default: table)")
     c.set_defaults(func=_cmd_crosswalk)
 
     d = sub.add_parser("detect", help="detect the coding system of raw codes")
     d.add_argument("codes", nargs="*", help="one or more codes")
     d.add_argument("--input", help="file with one code per line")
+    d.add_argument("--format", choices=["table", "json"], default="table",
+                   help="output format (default: table)")
     d.set_defaults(func=_cmd_detect)
     return p
 
