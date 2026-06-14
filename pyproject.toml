@@ -34,3 +34,6 @@ codemap = "codemap.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["codemap"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
