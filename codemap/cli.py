@@ -18,6 +18,7 @@ Exit codes: 0 = all good, 1 = at least one invalid/unknown finding, 2 = usage er
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import sys
 from typing import List, Optional
@@ -32,20 +33,57 @@ from codemap.core import (
 )
 
 
+def _die(msg: str) -> int:
+    """Print *msg* to stderr and return exit code 2 (usage/input error)."""
+    print(f"error: {msg}", file=sys.stderr)
+    return 2
+
+
 def _load(table_path: Optional[str]) -> Terminology:
-    if table_path:
+    """Load terminology from *table_path* or fall back to the built-in table.
+
+    Raises SystemExit(2) with a clear message on any I/O or parse failure.
+    """
+    if not table_path:
+        return load_default()
+    try:
         return load_table(table_path)
-    return load_default()
+    except FileNotFoundError:
+        print(f"error: table file not found: {table_path!r}", file=sys.stderr)
+        raise SystemExit(2)
+    except (UnicodeDecodeError, csv.Error) as exc:
+        print(f"error: could not read table file {table_path!r}: {exc}", file=sys.stderr)
+        raise SystemExit(2)
+    except OSError as exc:
+        print(f"error: I/O error reading table file {table_path!r}: {exc}", file=sys.stderr)
+        raise SystemExit(2)
 
 
 def _read_codes(args) -> List[str]:
+    """Collect codes from positional args and/or --input file.
+
+    Raises SystemExit(2) with a clear message if the input file cannot be read.
+    """
     codes: List[str] = list(args.codes or [])
     if args.input:
-        with open(args.input, "r", encoding="utf-8") as fh:
-            for line in fh:
-                line = line.strip()
-                if line and not line.startswith("#"):
-                    codes.append(line)
+        try:
+            with open(args.input, "r", encoding="utf-8") as fh:
+                for line in fh:
+                    line = line.strip()
+                    if line and not line.startswith("#"):
+                        codes.append(line)
+        except FileNotFoundError:
+            print(f"error: input file not found: {args.input!r}", file=sys.stderr)
+            raise SystemExit(2)
+        except UnicodeDecodeError as exc:
+            print(
+                f"error: input file {args.input!r} is not valid UTF-8: {exc}",
+                file=sys.stderr,
+            )
+            raise SystemExit(2)
+        except OSError as exc:
+            print(f"error: could not read input file {args.input!r}: {exc}", file=sys.stderr)
+            raise SystemExit(2)
     return codes
 
 
@@ -175,7 +213,18 @@ def main(argv: Optional[List[str]] = None) -> int:
     if not getattr(args, "command", None):
         parser.print_help()
         return 2
-    return args.func(args)
+    try:
+        return args.func(args)
+    except SystemExit:
+        # Re-raise SystemExit so _load/_read_codes can propagate exit-code-2
+        # errors cleanly without being swallowed by the generic handler below.
+        raise
+    except KeyboardInterrupt:
+        print("Interrupted.", file=sys.stderr)
+        return 2
+    except Exception as exc:  # pragma: no cover
+        print(f"error: unexpected error: {exc}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":
