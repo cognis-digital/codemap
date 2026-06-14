@@ -32,3 +32,9 @@ codemap = "codemap.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["codemap"]
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+select = ["F", "E"]

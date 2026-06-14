@@ -118,9 +118,13 @@ def _loinc_check_ok(code: str) -> bool:
     """Verify a LOINC mod-10 check digit (Luhn-style on the numeric body)."""
     try:
         body, check = code.split("-")
+        digits = [int(c) for c in body]
     except ValueError:
         return False
-    digits = [int(c) for c in body]
+    try:
+        check_digit = int(check)
+    except ValueError:
+        return False
     total = 0
     # Apply weights 2,1,2,1... from the rightmost body digit.
     for i, d in enumerate(reversed(digits)):
@@ -130,7 +134,7 @@ def _loinc_check_ok(code: str) -> bool:
             p -= 9
         total += p
     expected = (10 - (total % 10)) % 10
-    return expected == int(check)
+    return expected == check_digit
 
 
 @dataclass(frozen=True)

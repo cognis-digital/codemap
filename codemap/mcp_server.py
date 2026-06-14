@@ -1,6 +1,8 @@
-"""CODEMAP MCP server — exposes scan() as an MCP tool for Cognis.Studio."""
+"""CODEMAP MCP server — exposes validate/crosswalk as MCP tools for Cognis.Studio."""
 from __future__ import annotations
-from codemap.core import scan, to_json
+import json
+from codemap.core import validate_code, crosswalk, CodeSystem
+
 
 def serve() -> int:
     """Start an MCP stdio server. Requires the optional 'mcp' extra:
@@ -14,9 +16,22 @@ def serve() -> int:
     app = FastMCP("codemap")
 
     @app.tool()
-    def codemap_scan(target: str) -> str:
-        """Translate and validate medical codes across ICD-10, SNOMED CT, LOINC, RxNorm, and CPT from the CLI.. Returns JSON findings."""
-        return to_json(scan(target))
+    def codemap_validate(code: str) -> str:
+        """Validate a medical code (ICD-10, LOINC, RxNorm, CPT). Returns JSON."""
+        result = validate_code(code)
+        return json.dumps(result.as_dict())
+
+    @app.tool()
+    def codemap_crosswalk(code: str, target_system: str = "") -> str:
+        """Crosswalk a medical code to mapped concepts. Returns JSON list."""
+        target = None
+        if target_system:
+            try:
+                target = CodeSystem(target_system.strip().upper().replace("-", ""))
+            except ValueError:
+                return json.dumps({"error": f"unknown system: {target_system!r}"})
+        results = crosswalk(code, target)
+        return json.dumps([r.as_dict() for r in results])
 
     app.run()
     return 0
