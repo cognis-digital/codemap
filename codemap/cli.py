@@ -160,6 +160,10 @@ def build_parser() -> argparse.ArgumentParser:
     d.add_argument("codes", nargs="*", help="one or more codes")
     d.add_argument("--input", help="file with one code per line")
     d.set_defaults(func=_cmd_detect)
+    # also accept --format after the subcommand (SUPPRESS keeps the global default)
+    for _sp in (v, c, d):
+        _sp.add_argument("--format", choices=["table", "json"], default=argparse.SUPPRESS,
+                         help="output format (default: table)")
     return p
 
 
