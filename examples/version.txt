@@ -1,0 +1,3 @@
+$ codemap-emit --version
+
+codemap 0.1.0

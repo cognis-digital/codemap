@@ -1,0 +1,22 @@
+$ codemap-emit --help
+
+usage: codemap [-h] [--version] [--format {table,json}] COMMAND ...
+
+CODEMAP - offline medical code crosswalk and validator (ICD-10 / LOINC / RxNorm / CPT).
+
+positional arguments:
+  COMMAND
+    validate            validate and identify codes
+    crosswalk           map a code to equivalent concepts
+    detect              detect the coding system of raw codes
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        output format (default: table)
+
+Examples:
+  codemap validate E11.9
+  codemap crosswalk E11.9 --to RXNORM --format json
+  codemap detect 4548-4

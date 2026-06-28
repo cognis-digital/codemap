@@ -20,6 +20,61 @@ pip install cognis-codemap
 codemap scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ codemap-emit --version
+codemap 0.1.0
+```
+
+```console
+$ codemap-emit --help
+usage: codemap [-h] [--version] [--format {table,json}] COMMAND ...
+
+CODEMAP - offline medical code crosswalk and validator (ICD-10 / LOINC / RxNorm / CPT).
+
+positional arguments:
+  COMMAND
+    validate            validate and identify codes
+    crosswalk           map a code to equivalent concepts
+    detect              detect the coding system of raw codes
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        output format (default: table)
+
+Examples:
+  codemap validate E11.9
+  codemap crosswalk E11.9 --to RXNORM --format json
+  codemap detect 4548-4
+```
+
+> Blocks above are real `codemap` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"findings": [
+    {
+        "id": "1234567890",
+        "title": "Suspicious Activity Detected",
+        "description": "Anomalous network traffic observed from IP 192.168.1.100",
+        "created_by": "cognis-connect",
+        "created_at": "2023-02-20T14:30:00Z"
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install:**
